@@ -1,0 +1,30 @@
+Mission 4 program run (user name replaced with [redacted])
+
+$ cat hello.py
+print("Hello from Python")
+
+$ python3 --version
+Python 3.14.7
+
+$ python3 hello.py
+Hello from Python
+
+exit status: 0
+
+--- python compiles the file to bytecode before running it ---
+$ python3 -m py_compile hello.py
+$ ls -l __pycache__
+total 8
+-rw-r--r--@ 1 [redacted]  staff  155 14 Nov 18:00 hello.cpython-314.pyc
+
+Comparison: the same kind of program compiled with cc, run in a temp folder outside the repository (that folder was deleted afterwards)
+
+$ cat hello.c
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello from C\n");
+    return 0;
+}
+
+$ cc --version (first line)
