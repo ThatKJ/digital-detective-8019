@@ -1,0 +1,16 @@
+$ python3 --version
+Python 3.14.7
+
+$ git --version
+git version 2.54.0 (Apple Git-157)
+
+$ gh --version (first line)
+gh version 2.93.0 (2026-05-27)
+
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		27.2
+BuildVersion:		26B123
+
+$ uname -m
+arm64

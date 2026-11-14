@@ -1,0 +1,60 @@
+# The Digital Detective
+
+This is my submission for the Diwali Independent Learning Assignment called
+"The Digital Detective: Explore Your Computer, Build a Mini System Report".
+
+The assignment had nine missions. In each one I explored one part of my Mac,
+wrote down what I saw, and committed the work. The missions go from setting up
+a GitHub repository, to Terminal practice, to the operating system, to how
+Python runs, to number systems, to Git branches, and finally to networks.
+
+## Mission index
+
+| Mission | Topic | Link |
+|---|---|---|
+| 0 | Repository and workspace setup | [mission-00-setup](mission-00-setup/README.md) |
+| 1 | Computer fundamentals and IPOS | [mission-01-computer-basics](mission-01-computer-basics/README.md) |
+| 2 | Terminal and file management | [mission-02-terminal](mission-02-terminal/README.md) |
+| 3 | Operating system, processes and permissions | [mission-03-operating-system](mission-03-operating-system/README.md) |
+| 4 | How programs run | [mission-04-programs](mission-04-programs/README.md) |
+| 5 | Number systems, Python and text encoding | [mission-05-numbers-data](mission-05-numbers-data/README.md) |
+| 6 | Git, GitHub, branches and Pull Requests | [mission-06-git-github](mission-06-git-github/README.md) |
+| 7 | Computer networks | [mission-07-networking](mission-07-networking/README.md) |
+| 8 | Final review and submission | [mission-08-final-report](mission-08-final-report/README.md) |
+
+## Folder layout
+
+    digital-detective-8019/
+    ├── README.md
+    ├── mission-00-setup/
+    ├── mission-01-computer-basics/
+    ├── mission-02-terminal/
+    ├── mission-03-operating-system/
+    ├── mission-04-programs/
+    │   ├── README.md
+    │   └── hello.py
+    ├── mission-05-numbers-data/
+    │   ├── README.md
+    │   └── number_converter.py
+    ├── mission-06-git-github/
+    ├── mission-07-networking/
+    ├── mission-08-final-report/
+    └── evidence/
+
+Every mission folder has its own README. The `evidence` folder keeps short
+saved outputs and screenshots so the observations in the READMEs can be
+checked. I removed my username, device name and IP address from those files
+before saving them.
+
+## About the commits
+
+Each mission was finished, documented, committed and pushed on its own. The
+commit messages say which mission they belong to, so the history can be read
+one mission at a time instead of one big upload at the end.
+
+## Tools I used
+
+- Terminal (zsh shell)
+- Git and GitHub
+- Python 3
+- VS Code as the text editor
