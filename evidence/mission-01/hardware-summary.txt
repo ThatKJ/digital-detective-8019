@@ -1,0 +1,11 @@
+Hardware summary (serial number, hardware UUID and UDID removed)
+
+      Model Name: MacBook Pro
+      Model Identifier: Mac17,2
+      Chip: Apple M5
+      Total Number of Cores: 10 (4 Super and 6 Efficiency)
+      Memory: 16 GB
+
+$ df -h /
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s1s1   460Gi    13Gi   120Gi    10%    487k  1.3G    0%   /
