@@ -46,6 +46,21 @@ saved outputs and screenshots so the observations in the READMEs can be
 checked. I removed my username, device name and IP address from those files
 before saving them.
 
+## What I learned
+
+The biggest thing I learned is that most of what a computer does is a small
+number of simple steps repeated very fast. Input, processing, output and storage
+sounds like a school diagram, but I could point at each stage while typing.
+
+I also stopped seeing the Terminal as a scary black window. Almost every command
+I used was just a verb, an optional flag and a target, and `pwd` was enough to
+find out why a command did nothing.
+
+The part that surprised me most was that Python is not purely interpreted. It
+compiles the file to bytecode first, and I could see the `.pyc` file sitting in
+`__pycache__`. C gave me one 33 KB executable and no cache, which made the
+difference clear in a way that reading about it did not.
+
 ## What the missions cover
 
 - How a computer takes input, processes it, produces output and stores results

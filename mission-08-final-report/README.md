@@ -29,6 +29,7 @@ opened, not something I assumed.
 | Sensitive information removed | Pass. I searched the whole repository for my username, my email address and token-like strings and found nothing. |
 | Root README has navigation links | Pass. It has a mission index table linking every mission README. |
 | Root README explains how to run the converter | Pass. It now has a short section with the `cd` and `python3` commands and an example of the output. |
+| Root README has a short learning summary | Pass. It has a "What I learned" section before the mission overview, written after all nine missions were done. |
 | All intended commits are pushed | Pass. `git status` reports the branch is up to date with `origin/main`. |
 | Repository is public | Pass. GitHub reports the visibility as PUBLIC. |
 
