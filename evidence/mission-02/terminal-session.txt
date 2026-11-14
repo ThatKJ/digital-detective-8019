@@ -1,0 +1,129 @@
+Terminal practice session (user name replaced with [redacted])
+Folder: mission-02-terminal/terminal-practice
+
+$ pwd
+/Users/[redacted]/Desktop/SNAI/digital-detective-8019/mission-02-terminal/terminal-practice
+
+$ ls -l
+total 0
+
+$ touch notes.txt
+$ ls -l
+total 0
+-rw-r--r--@ 1 [redacted]  staff  0 14 Nov 17:47 notes.txt
+
+$ echo "Line one: this is my first line of text." > notes.txt
+$ cat notes.txt
+Line one: this is my first line of text.
+
+$ echo "Line two: added without removing line one." >> notes.txt
+$ cat notes.txt
+Line one: this is my first line of text.
+Line two: added without removing line one.
+
+$ touch notes.txt      (running touch again on a file that has text)
+$ cat notes.txt
+Line one: this is my first line of text.
+Line two: added without removing line one.
+
+$ cp notes.txt notes-copy.txt
+$ ls -l
+total 16
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 notes-copy.txt
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 notes.txt
+
+$ mv notes-copy.txt backup-day1.txt
+$ ls -l
+total 16
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 backup-day1.txt
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 notes.txt
+
+--- overwrite vs append ---
+$ echo "first version of this file" > demo.txt
+$ cat demo.txt
+first version of this file
+
+$ echo "second version, written with a single >" > demo.txt
+$ cat demo.txt
+second version, written with a single >
+
+$ echo "third line, added with >>" >> demo.txt
+$ cat demo.txt
+second version, written with a single >
+third line, added with >>
+
+--- relative and absolute paths ---
+$ pwd
+/Users/[redacted]/Desktop/SNAI/digital-detective-8019/mission-02-terminal/terminal-practice
+$ cd ..            (relative: one level up)
+/Users/[redacted]/Desktop/SNAI/digital-detective-8019/mission-02-terminal
+$ cd terminal-practice    (relative: back down by name)
+/Users/[redacted]/Desktop/SNAI/digital-detective-8019/mission-02-terminal/terminal-practice
+$ cd ..
+$ cd ~/Desktop/SNAI/digital-detective-8019/mission-02-terminal/terminal-practice   (absolute path)
+/Users/[redacted]/Desktop/SNAI/digital-detective-8019/mission-02-terminal/terminal-practice
+
+--- flags: normal, detailed, hidden, human readable (same folder, same moment) ---
+$ ls
+backup-day1.txt
+demo.txt
+notes.txt
+
+$ ls -l
+total 24
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 backup-day1.txt
+-rw-r--r--@ 1 [redacted]  staff  66 14 Nov 17:47 demo.txt
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 notes.txt
+
+$ ls -a
+.
+..
+backup-day1.txt
+demo.txt
+notes.txt
+
+$ ls -lh
+total 24
+-rw-r--r--@ 1 [redacted]  staff    84B 14 Nov 17:47 backup-day1.txt
+-rw-r--r--@ 1 [redacted]  staff    66B 14 Nov 17:47 demo.txt
+-rw-r--r--@ 1 [redacted]  staff    84B 14 Nov 17:47 notes.txt
+
+$ ls -lah
+total 24
+drwxr-xr-x@ 5 [redacted]  staff   160B 14 Nov 17:47 .
+drwxr-xr-x@ 4 [redacted]  staff   128B 14 Nov 17:47 ..
+-rw-r--r--@ 1 [redacted]  staff    84B 14 Nov 17:47 backup-day1.txt
+-rw-r--r--@ 1 [redacted]  staff    66B 14 Nov 17:47 demo.txt
+-rw-r--r--@ 1 [redacted]  staff    84B 14 Nov 17:47 notes.txt
+
+--- pipe ---
+$ ls -l
+total 24
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 backup-day1.txt
+-rw-r--r--@ 1 [redacted]  staff  66 14 Nov 17:47 demo.txt
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 notes.txt
+
+$ ls -l | head -4
+total 24
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 backup-day1.txt
+-rw-r--r--@ 1 [redacted]  staff  66 14 Nov 17:47 demo.txt
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 notes.txt
+
+--- package manager ---
+$ which brew
+/opt/homebrew/bin/brew
+$ brew --version (first two lines)
+Homebrew 7.0.10
+$ brew list --formula | wc -l
+     186
+$ brew list --formula (first 8 names)
+abseil
+actionlint
+ada-url
+aom
+apr
+apr-util
+argon2
+autoconf
+$ brew list --cask | wc -l
+      13
