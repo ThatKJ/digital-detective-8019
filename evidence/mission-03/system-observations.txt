@@ -1,0 +1,81 @@
+Operating system observations (user name replaced with [redacted])
+Captured: 14 Nov 2026
+
+--- system information ---
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		27.2
+BuildVersion:		26B123
+
+$ uname -sr
+Darwin 27.2.0
+
+$ system_profiler SPSoftwareDataType (selected lines)
+      System Version: macOS 27.2 (26B123)
+      Kernel Version: Darwin 27.2.0
+      Boot Volume: Macintosh HD
+      Time since boot: 6 days, 1 hour, 3 minutes
+
+--- account ---
+$ whoami
+[redacted]
+$ id -u
+501
+$ id -un
+[redacted]
+
+--- storage ---
+$ df -h /System/Volumes/Data
+Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s5   460Gi   294Gi   120Gi    71%    5.4M  1.3G    0%   /System/Volumes/Data
+
+$ df -h /
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s1s1   460Gi    13Gi   120Gi    10%    487k  1.3G    0%   /
+
+--- processes ---
+$ ps -A | wc -l
+     575
+
+$ ps -A -o pid,ppid,comm | head -6
+  PID  PPID COMM
+    1     0 /sbin/launchd
+  344     1 /usr/libexec/logd
+  347     1 /usr/libexec/UserEventAgent
+  349     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd
+  350     1 /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoted
+
+$ echo $$
+84183
+$ ps -p $$ -o pid,ppid,comm
+  PID  PPID COMM
+84183 18783 /bin/zsh
+
+$ top -l 1 -n 5 -o cpu (first 12 lines)
+Processes: 568 total, 2 running, 566 sleeping, 3975 threads 
+2026/11/14 17:48:31
+Load Avg: 2.95, 4.13, 4.47 
+CPU usage: 18.71% user, 15.50% sys, 65.77% idle 
+SharedLibs: 388M resident, 96M data, 75M linkedit.
+MemRegions: 800282 total, 4683M resident, 156M private, 2177M shared.
+PhysMem: 15G used (3002M wired, 4450M compressor), 181M unused.
+VM: 314T vsize, 57G framework vsize, 60080237(0) swapins, 75217294(0) swapouts.
+Networks: packets: 64857398/37G in, 81407746/74G out.
+Disks: 122240911/2647G read, 48949245/1618G written.
+
+PID    COMMAND          %CPU TIME     #TH #WQ #PORTS MEM   PURG CMPRS PGRP  PPID  STATE    BOOSTS     %CPU_ME %CPU_OTHRS UID FAULTS  COW  MSGSENT MSGRECV SYSBSD SYSMACH CSW    PAGEINS IDLEW POWER INSTRS CYCLES JETPRI USER   #MREGS RPRVT VPRVT VSIZE KPRVT KSHRD
+
+--- permissions ---
+$ ls -l mission-02-terminal/terminal-practice/notes.txt
+-rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 mission-02-terminal/terminal-practice/notes.txt
+
+$ stat -f "%Sp owner=%Su group=%Sg size=%z bytes name=%N" mission-02-terminal/terminal-practice/notes.txt
+-rw-r--r-- owner=[redacted] group=staff size=84 bytes name=mission-02-terminal/terminal-practice/notes.txt
+
+$ ls -ld mission-02-terminal/terminal-practice
+drwxr-xr-x@ 5 [redacted]  staff  160 14 Nov 17:47 mission-02-terminal/terminal-practice
+
+--- some app processes ---
+51853 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler
+84204 /bin/zsh
+53757 /bin/zsh
