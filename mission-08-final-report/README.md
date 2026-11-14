@@ -95,6 +95,7 @@ README was rewritten in plain language after that.
 | `python3 number_converter.py` with 13, 25 and 100 | To confirm the Mission 5 program still runs after all the changes. |
 | `git log --oneline` | To confirm there is one commit per mission. |
 | `git branch -a` | To confirm `update-about` exists locally and on GitHub. |
+| `git log -S'kirtan'` and `git log -S'[redacted]'` | To check whether the account name ever made it into a commit. |
 | `gh pr view 1` | To confirm the PR is still open and what it changes. |
 | `gh repo view` | To confirm the repository is public. |
 
@@ -105,11 +106,11 @@ easy. Checking that every folder really contained what the rubric asks for was
 the slow bit.
 
 Two things I would do differently next time. First, I would check for private
-information in each file before committing it, not in one sweep at the end,
-because my account name was already pushed to GitHub by the time I spotted it.
-Second, I would save one small evidence file per mission as I went, because
-writing a README from memory a week later is far less reliable than copying the
-Terminal while it is still open.
+information in each file before committing it, not in one sweep at the end. I got
+lucky with the account name and caught it before that commit went out, and luck
+is not a process. Second, I would save one small evidence file per mission as I
+went, because writing a README from memory a week later is far less reliable than
+copying the Terminal while it is still open.
 
 The Git history turned out to be useful evidence too, not just housekeeping.
 Anyone reading the log can see which commit belongs to which mission, and the
@@ -117,8 +118,9 @@ branch and Pull Request show the workflow instead of only describing it.
 
 ## 5. Difficulties faced
 
-- Fixing the account name after it was already pushed meant the old value was
-  still in the earlier commits, even though the current files are clean.
+- I was worried about the account name being in an old commit, and then checked
+  the history properly and found it never made it in. It was fixed in the file
+  before that mission was ever committed.
 - When I re-checked the Pull Request it said `mergeable: UNKNOWN`, where it had
   said MERGEABLE before, and I did not know what had changed.
 - The privacy search matched the ordinary words "password" and "token" in normal
@@ -128,9 +130,9 @@ branch and Pull Request show the workflow instead of only describing it.
 
 ## 6. How I resolved them
 
-- I fixed the file, committed the correction and left the history alone instead
-  of rewriting it. The assignment says not to alter history, and the old value
-  only appears inside a pasted output block, not as a login.
+- I fixed the file before committing that mission, so the name never reached
+  GitHub. I searched the history with `git log -S` to confirm that, instead of
+  assuming either way.
 - I read `UNKNOWN` as GitHub still working out whether the branch merges cleanly.
   What matters for the assignment is that it is OPEN and not merged, and that has
   not changed.

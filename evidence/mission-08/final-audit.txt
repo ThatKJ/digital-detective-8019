@@ -104,3 +104,14 @@ PR #1 state=OPEN update-about->main files=README.md https://github.com/ThatKJ/di
 
 === repository ===
 digital-detective-8019 visibility=PUBLIC https://github.com/ThatKJ/digital-detective-8019
+
+=== history check added after the audit: did the account name ever get committed? ===
+$ git log --oneline -S'kirtan' --all -- .
+(no output above means it never appeared in any commit)
+
+$ git log --oneline -S'[redacted]' --all -- .
+02c898a Rewrite mission notes in plainer language and tidy evidence
+8a955dc Complete final report and verify assignment submission
+85afa85 Compare compilers and interpreters
+3f6e496 Document operating system and file management
+bf8a90f Complete Terminal and file management mission
