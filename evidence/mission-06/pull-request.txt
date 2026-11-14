@@ -1,0 +1,18 @@
+$ gh pr create --base main --head update-about --title "Add My Learning section to root README"
+https://github.com/ThatKJ/digital-detective-8019/pull/1
+
+$ gh pr view 1 --json number,state,isDraft,mergeable,headRefName,baseRefName,files,url
+{"files":["README.md"],"from":"update-about","into":"main","isDraft":false,"mergeable":"MERGEABLE","number":1,"state":"OPEN","url":"https://github.com/ThatKJ/digital-detective-8019/pull/1"}
+
+$ gh pr diff 1 --stat
+unknown flag: --stat
+
+Usage:  gh pr diff [<number> | <url> | <branch>] [flags]
+
+Flags:
+      --color string       Use color in diff output: {always|never|auto} (default "auto")
+  -e, --exclude patterns   Exclude files matching glob patterns from the diff
+      --name-only          Display only names of changed files
+      --patch              Display diff in patch format
+  -w, --web                Open the pull request diff in the browser
+  
