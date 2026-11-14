@@ -2,188 +2,169 @@
 
 ## 1. Task / objective
 
-Find out what operating system my Mac is running, which account is active, how
-much storage is left, and what is running in the background. Then look at paths
-and file permissions, and explain what an operating system is actually
+Find out what operating system my Mac is running, which account I am logged in
+as, how full the disk is, and what is running in the background. Then look at
+paths and file permissions, and explain what an operating system is actually
 responsible for.
 
 ## 2. Work completed
 
-I ran the Terminal commands listed below and wrote down what each result meant.
-My username has been replaced with `[redacted]` everywhere, and I did not copy
-any device name, serial number or network address into the repository.
+I ran the commands below and wrote down what each result meant. My account name
+appears as `student` everywhere, and no device name, serial number or network
+address went into the repository.
 
 ### Task 3.1 — Exploring my operating system
 
-| Information explored | What it tells you | My observation (privacy-safe) |
+| What I looked at | What it tells you | What I actually saw |
 |---|---|---|
-| Operating system / system details | Which OS and version is installed, and which kernel it runs on. | macOS 27.2, build 26B123. The kernel is Darwin 27.2.0. The boot volume is named Macintosh HD and the Mac had been running for 6 days and 1 hour at the time I checked. |
-| Current account identity | Which user account the Terminal is acting as, and that account's numeric ID. | `whoami` and `id -un` both returned my username, which I have replaced with `[redacted]`. `id -u` returned 501. |
-| Available and used storage | Total size of the disk, how much is used, how much is free, and the percentage full. | The data volume is 460 GB in total, 294 GB used, 120 GB available, 71 per cent full. |
-| System activity snapshot | How many processes exist, how busy the CPU is, and how memory is being used. | `ps -A` listed 575 lines including the header. `top` showed 568 processes, 2 running and 566 sleeping, with 3975 threads. CPU was 18.71 per cent user, 15.50 per cent system and 65.77 per cent idle. Memory: 15 GB used, 181 MB unused. |
+| System and kernel details | Which OS and version is installed, and what it is built on. | macOS 27.2, build 26B123. It runs on the Darwin 27.2.0 kernel. The boot volume is called Macintosh HD. At the time I checked, the Mac had been up for 6 days, 1 hour and 3 minutes. |
+| Who I am logged in as | Which account the Terminal is acting for, and that account's number. | `whoami` and `id -un` both gave my account name, shown as `student` here. `id -u` gave `501`. |
+| Disk space | How big the disk is, how much is used, how much is free, and how full that is in percent. | 460 GB total, 294 GB used, 120 GB free, 71 per cent full. |
+| What is running | How many processes exist, how busy the CPU is, how memory is being used. | `ps -A` printed 575 lines including the header. `top` showed 568 processes, 2 running and 566 sleeping, with 3975 threads. CPU was 18.71 per cent user, 15.50 per cent system, 65.77 per cent idle. Memory: 15 GB used, 181 MB free. |
 
-Two things worth writing down from this: `ps` and `top` did not agree on the
-number of processes (575 against 568). That is because the list changes between
-the two commands, and `top` had already been running for a moment when it
-counted. Neither number is wrong.
-
-`df -h /` showed only 13 GB used, while `/System/Volumes/Data` showed 294 GB
-used. On macOS these are two volumes that share the same free space: one holds
-the protected system files, the other holds my files and apps. Reading only the
-first one would have made the disk look almost empty.
+Two of these numbers did not agree. `ps` counted 575 and `top` counted 568. That
+is not a mistake in either one. Processes start and finish all the time, `top`
+takes a moment to settle before it counts, and the two commands ran a few
+seconds apart.
 
 ### Task 3.2 — Processes
 
-**What is a process?** A process is a program that is currently running. The
-file on disk is just instructions. Once macOS loads it into memory and starts
-executing it, it becomes a process with its own process ID, its own memory and
-its own state.
+**What a process is.** A process is a program that is actually running. The file
+sitting on disk is just a set of instructions. When macOS loads it into memory
+and starts working through it, it becomes a process with its own ID, its own
+memory and its own state.
 
-**What does the PID column represent?** PID means process identifier. It is the
-unique number the operating system gives to each running process so that it can
-track it. When I ran `echo $$`, the shell printed `84183`, and
-`ps -p 84183 -o pid,ppid,comm` showed that exact process as `/bin/zsh`. The PPID
-column next to it is the parent process ID, which is the process that started
-this one.
+**What the PID column means.** PID stands for process identifier. It is the
+number the operating system hands to each running process so it can find it
+again later. I ran `echo $$` and got `84183`. Then
+`ps -p 84183 -o pid,ppid,comm` showed that exact process was `/bin/zsh`, which
+is the shell I was typing into. The PPID next to it is the parent process ID, the
+process that started this one. For my shell that was `18783`.
 
-**Two examples of processes that may be running:**
+**Two processes that were running:**
 
-1. `/sbin/launchd` with PID 1. This is the first process macOS starts, and every
-   other process is started either by it or by something it started.
-2. `/Applications/Visual Studio Code.app/.../chrome_crashpad_handler` with
-   PID 51853. That is a background helper that belongs to VS Code, which was
-   open at the time.
+1. `/sbin/launchd` with PID 1. This is the first thing macOS starts, and
+   everything else comes from it or from something it started.
+2. `/Applications/Visual Studio Code.app/.../chrome_crashpad_handler` with PID
+   51853. A background helper that belongs to VS Code, which was open at the
+   time.
 
-A background process like the VS Code helper explains something I had not
-thought about before: closing an app's window does not always end every process
-that belongs to it.
+That second one made me think. I had closed VS Code windows before and assumed
+the app was finished. Clearly it was not.
 
 ### Task 3.3 — Paths and permissions
 
-Moving between the repository folder and one of its subfolders changed the
-output of `pwd` exactly as expected: from
-`.../digital-detective-8019/mission-02-terminal` down into
+Walking between the repository folder and one of its subfolders changed what
+`pwd` printed, exactly as I expected. It went from
+`.../digital-detective-8019/mission-02-terminal` down to
 `.../mission-02-terminal/terminal-practice`.
 
-**Absolute path.** A full address that starts from the top of the disk and
-works every time, no matter where I currently am. Example from my assignment
-folder:
+**Absolute path.** A full address that starts at the top of the disk. It works
+from anywhere. Example from my assignment folder:
 
-    /Users/[redacted]/Desktop/SNAI/digital-detective-8019/mission-02-terminal/terminal-practice/notes.txt
+    /Users/student/Desktop/SNAI/digital-detective-8019/mission-02-terminal/terminal-practice/notes.txt
 
 **Relative path.** An address that starts from the folder I am standing in.
-Example, while I am already inside `digital-detective-8019`:
+Same file, written while I am already inside `digital-detective-8019`:
 
     mission-02-terminal/terminal-practice/notes.txt
 
-The same file, two ways of writing it. The absolute path is longer but it does
-not depend on where I start. The relative path is shorter but wrong if I run it
-from a different folder.
+Longer but reliable, or shorter but fragile. That is the whole trade-off.
 
-**Permissions on a file in my practice area.** I checked the file
-`mission-02-terminal/terminal-practice/notes.txt`:
+**Permissions on a file I made.** I ran `ls -l` on the notes file:
 
-    -rw-r--r--@ 1 [redacted] staff 84 14 Nov 17:47 .../notes.txt
+    -rw-r--r--@ 1 student staff 84 14 Nov 17:47 .../notes.txt
 
-Reading the first block from left to right:
+Read it left to right:
 
-- `-` means it is a normal file, not a folder.
-- `rw-` is the owner, me. I can read it and write to it, but not execute it.
+- `-` means a normal file, not a folder.
+- `rw-` is the owner, which is me. I can read and write it, but not run it.
 - `r--` is the group, `staff`. Read only.
 - `r--` is everyone else. Read only.
 
-So the owner can read and write the file but cannot execute it. That makes sense
-for a text file. The `@` at the end means macOS is storing extra metadata on the
-file, which on this laptop comes from files created through the Desktop folder.
+So I can read and change the file, but nothing can execute it. For a text file
+that is right. The `@` at the end means macOS is keeping extra metadata on it,
+which happens to files made through the Desktop folder.
 
-For comparison, the practice folder itself was `drwxr-xr-x`: the `d` means
-directory, and the owner has `rwx`, so I can enter the folder as well as list
-and change things inside it. On a folder, the `x` permission means "allowed to
-go into it", not "allowed to run it".
+The folder itself was different: `drwxr-xr-x`. The `d` says directory, and the
+owner has `rwx`. On a folder the `x` does not mean "run it", it means "allowed to
+go inside it".
 
-| Permission | Meaning | Example |
+| Permission | What it allows | Example |
 |---|---|---|
-| r - Read | Allows a file's contents to be read. | Opening a text file, or `cat notes.txt`. |
-| w - Write | Allows a file to be changed. | Editing the file, or `echo "text" >> notes.txt`. |
-| x - Execute | Allows a file to be run. On a folder, it allows access or traversal into it. | Running a Python script, or `cd` into a folder. |
+| r — read | Reading a file's contents. | Opening a text file, or running `cat notes.txt`. |
+| w — write | Changing a file. | Editing it, or `echo "text" >> notes.txt`. |
+| x — execute | Running a file. On a folder, going into it. | Running a Python script, or `cd` into a folder. |
 
-I did not change any permissions on any file, inside or outside the repository.
+I did not change permissions on anything, inside the repository or outside it.
 
 ### Task 3.4 — What the operating system is responsible for
 
-| OS responsibility | My explanation | Example |
+| Responsibility | My explanation | Example from this Mac |
 |---|---|---|
-| Process management | Decides which running program gets the CPU and for how long, starts processes and stops them when they finish. | `top` showed 2 processes running and 566 sleeping. The CPU can only run a few at a time, so macOS keeps switching between them. |
-| Memory management | Hands out RAM to programs and takes it back when they close, and uses the disk as extra memory when RAM runs out. | `top` showed 15 GB used and only 181 MB unused, with 4450 MB in the compressor. That is macOS squeezing memory instead of letting the Mac slow to a stop. |
-| Device management | Talks to the hardware through drivers so programs do not have to know how each device works. | The keyboard, trackpad, display and SSD all work without VS Code knowing anything about them. |
-| File management | Keeps the folder structure, tracks where each file is stored, and enforces who may read or write it. | `pwd`, `ls` and `mkdir` are all requests to the file system. A permission change on a file is enforced here. |
-| User interface / shell | Gives me a way to give instructions: a graphical interface with windows and icons, or a shell like zsh where I type commands. | Finder is the graphical side. The Terminal window running zsh is the command-line side. Both are talking to the same operating system. |
-| Security and permissions | Makes sure a normal user cannot damage system files or read another user's data, and asks for a password for anything that needs more power. | The system volume is separate from my data volume and is protected. `[redacted]` owns my files but not the system files, and `sudo` is needed for those. I did not use `sudo` for this assignment. |
+| Process management | Decides which running program gets the CPU and for how long, starts them and stops them. | `top` showed 2 processes running and 566 sleeping. The CPU cannot run them all at once, so macOS keeps swapping between them. |
+| Memory management | Hands RAM out to programs, takes it back when they close, and uses the disk as overflow when RAM runs low. | `top` showed 15 GB used and only 181 MB free, with 4450 MB sitting in the compressor. macOS was squeezing memory rather than letting the Mac grind to a halt. |
+| Device management | Talks to the hardware through drivers, so programs do not need to know how each device works. | The keyboard, trackpad, screen and SSD all work without VS Code knowing anything about them. |
+| File management | Keeps the folder structure, tracks where each file lives, and enforces who may read or write it. | `pwd`, `ls` and `mkdir` are all requests to the file system. So is a permission check. |
+| User interface and shell | Gives me a way to give instructions, either with windows and icons or by typing. | Finder is the graphical side. The Terminal running zsh is the typed side. Both talk to the same operating system. |
+| Security and permissions | Stops a normal user from damaging system files or reading someone else's data, and asks for a password when more power is needed. | The system volume is kept separate from my data volume. `student` owns my files but not the system ones, and `sudo` is needed for those. I did not use `sudo` in this assignment. |
 
 ## 3. Commands / tools used
 
 | Command | Purpose |
 |---|---|
-| `sw_vers` | Shows the macOS product name, version and build. |
-| `uname -sr` | Shows the kernel name and release (Darwin 27.2.0). |
-| `system_profiler SPSoftwareDataType` | Shows a longer software summary including boot volume and uptime. |
-| `whoami`, `id -u`, `id -un` | Shows which account I am using and its numeric ID. |
-| `df -h` | Shows total, used and free disk space in a readable form. |
-| `ps -A`, `ps -A -o pid,ppid,comm` | Lists running processes, optionally with chosen columns. |
-| `echo $$` | Prints the PID of the current shell. |
-| `ps -p <pid> -o pid,ppid,comm` | Shows details for one specific process. |
+| `uname -sr` | Shows the kernel name and release. |
+| `whoami`, `id -u`, `id -un` | Shows which account I am using and its number. |
+| `echo $$` | Prints the PID of the shell I am typing in. |
 | `top -l 1 -n 5 -o cpu` | Takes one snapshot of system activity, sorted by CPU use. |
-| `ls -l`, `ls -ld` | Shows permissions for a file, or for a folder itself. |
-| `stat -f "..."` | Prints the permission string, owner and size of a file. |
+| `ls -l`, `ls -ld` | Shows permissions on a file, or on a folder itself. |
 
 ## 4. My understanding
 
-The operating system is the layer that stands between the programs and the
-hardware. My Python program does not know what kind of SSD is installed. It asks
-the operating system to write a file, and macOS handles the rest. That is the
-main idea I took from this mission.
+The operating system is the thing standing between my programs and the
+hardware. My Python program does not know what kind of SSD is in this laptop. It
+asks macOS to write a file and macOS deals with the rest. That is the main idea
+I came away with.
 
-Processes and memory are connected. Every process needs memory, and every
-process has a PID so the OS can find it again. When I looked at `top` and saw
-15 GB used out of 16 GB with only 181 MB unused, my laptop looked almost out of
-memory, yet it was still working normally. The compressor figure explains why:
-macOS compresses memory instead of failing.
+Processes and memory are tied together. Every process needs memory, and every
+process has a PID so the system can find it again. When `top` said 15 GB used
+out of 16 GB with almost nothing free, I expected the Mac to be crawling. It was
+fine. The compressor number is the reason.
 
-Permissions made more sense once I read the string as three groups of three
-instead of one long word. Owner, group, everyone. Each group gets read, write
-and execute in that fixed order.
+Permissions only made sense once I read the string as three groups of three
+instead of one long word. Owner, group, everyone. Each group gets read, write and
+execute, always in that order.
 
-Paths are the same address written two ways. That is why the same command can
-work in one Terminal window and fail in another: the relative path is being
-resolved from a different place.
+Paths are one address written two ways, which explains a lot of confusing
+errors. The same command can work in one Terminal window and fail in another
+because the relative path is being resolved from a different place.
 
 ## 5. Difficulties faced
 
-- `df -h /` and `df -h /System/Volumes/Data` gave completely different "used"
-  numbers for a disk that is supposed to be one disk.
-- I did not know why `ps -A` showed 575 lines and `top` showed 568 processes.
-- I confused PID with PPID for a while when reading `ps -p`.
-- I had to be careful with the outputs, because `whoami` and `ps` print my
-  username by default.
+- `ps -A` gave 575 lines and `top` gave 568, for the same computer at nearly the
+  same time.
+- I kept mixing up PID and PPID when reading the `ps` output.
+- I thought `x` on a folder meant something could be executed from it.
+- I had to be careful with the output, because `whoami` and `ps` print my account
+  name without being asked.
 
 ## 6. How I resolved them
 
-- I read the "Mounted on" column and realised `/` and
-  `/System/Volumes/Data` are two different volumes that share the same free
-  space. The system volume only holds macOS itself, so it looks nearly empty.
-- I accepted that the two numbers were taken at different moments. `top` counts
-  again after it starts, and processes open and close constantly.
-- I looked at the two columns side by side. PID is the process itself, PPID is
-  the process that started it. For my shell, PID was 84183 and PPID was 18783.
-- I saved the real output to a file first, replaced my username with
-  `[redacted]`, and only then wrote the notes. I also left out the computer name
-  and the serial number, which `system_profiler` shows by default.
+- I decided the two numbers were taken at different moments and that processes
+  open and close constantly. Neither tool was wrong.
+- I put the two columns side by side. PID is the process itself, PPID is the one
+  that started it. Mine were 84183 and 18783.
+- Reading `drwxr-xr-x` on a folder and then successfully `cd`-ing into it showed
+  me what `x` means there. It is permission to pass through.
+- I saved the real output to a file first, replaced my account name with
+  `student`, and wrote the notes afterwards. I also left out the computer name
+  and the serial number, which the system tools print by default.
 
 ## 7. Evidence / files
 
 - `mission-03-operating-system/README.md` - this file.
-- `evidence/mission-03/system-observations.txt` - the real command output with
-  the username replaced by `[redacted]` and no device name or serial number.
+- `evidence/mission-03/system-observations.txt` - the real command output, with
+  my account name shown as `student`, and no device name or serial number.
 
 ## 8. Commit details
 

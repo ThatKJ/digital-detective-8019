@@ -1,4 +1,4 @@
-Mission 4 program run (user name replaced with [redacted])
+Mission 4 program run (account name replaced with student)
 
 $ cat hello.py
 print("Hello from Python")
@@ -15,7 +15,7 @@ exit status: 0
 $ python3 -m py_compile hello.py
 $ ls -l __pycache__
 total 8
--rw-r--r--@ 1 [redacted]  staff  155 14 Nov 18:00 hello.cpython-314.pyc
+-rw-r--r--@ 1 student  staff  155 14 Nov 18:00 hello.cpython-314.pyc
 
 Comparison: the same kind of program compiled with cc, run in a temp folder outside the repository (that folder was deleted afterwards)
 

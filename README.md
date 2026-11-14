@@ -42,9 +42,9 @@ Python runs, to number systems, to Git branches, and finally to networks.
     └── evidence/
 
 Every mission folder has its own README. The `evidence` folder keeps short
-saved outputs and screenshots so the observations in the READMEs can be
-checked. I removed my username, device name and IP address from those files
-before saving them.
+saved outputs so the observations in the READMEs can be checked. I removed my
+account name, device name and IP address from those files before saving them, so
+my account just shows as `student`.
 
 ## What I learned
 

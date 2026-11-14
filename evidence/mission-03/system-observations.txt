@@ -1,4 +1,4 @@
-Operating system observations (user name replaced with [redacted])
+Operating system observations (account name replaced with student)
 Captured: 14 Nov 2026
 
 --- system information ---
@@ -18,11 +18,11 @@ $ system_profiler SPSoftwareDataType (selected lines)
 
 --- account ---
 $ whoami
-[redacted]
+student
 $ id -u
 501
 $ id -un
-[redacted]
+student
 
 --- storage ---
 $ df -h /System/Volumes/Data
@@ -67,13 +67,13 @@ PID    COMMAND          %CPU TIME     #TH #WQ #PORTS MEM   PURG CMPRS PGRP  PPID
 
 --- permissions ---
 $ ls -l mission-02-terminal/terminal-practice/notes.txt
--rw-r--r--@ 1 [redacted]  staff  84 14 Nov 17:47 mission-02-terminal/terminal-practice/notes.txt
+-rw-r--r--@ 1 student  staff  84 14 Nov 17:47 mission-02-terminal/terminal-practice/notes.txt
 
 $ stat -f "%Sp owner=%Su group=%Sg size=%z bytes name=%N" mission-02-terminal/terminal-practice/notes.txt
--rw-r--r-- owner=[redacted] group=staff size=84 bytes name=mission-02-terminal/terminal-practice/notes.txt
+-rw-r--r-- owner=student group=staff size=84 bytes name=mission-02-terminal/terminal-practice/notes.txt
 
 $ ls -ld mission-02-terminal/terminal-practice
-drwxr-xr-x@ 5 [redacted]  staff  160 14 Nov 17:47 mission-02-terminal/terminal-practice
+drwxr-xr-x@ 5 student  staff  160 14 Nov 17:47 mission-02-terminal/terminal-practice
 
 --- some app processes ---
 51853 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler
