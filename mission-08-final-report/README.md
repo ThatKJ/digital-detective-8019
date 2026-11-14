@@ -95,7 +95,7 @@ README was rewritten in plain language after that.
 | `python3 number_converter.py` with 13, 25 and 100 | To confirm the Mission 5 program still runs after all the changes. |
 | `git log --oneline` | To confirm there is one commit per mission. |
 | `git branch -a` | To confirm `update-about` exists locally and on GitHub. |
-| `git log -S'kirtan'` and `git log -S'[redacted]'` | To check whether the account name ever made it into a commit. |
+| `git log -S` with my account name | To check whether the account name ever made it into a commit. |
 | `gh pr view 1` | To confirm the PR is still open and what it changes. |
 | `gh repo view` | To confirm the repository is public. |
 
