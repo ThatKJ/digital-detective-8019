@@ -58,3 +58,15 @@ one mission at a time instead of one big upload at the end.
 - Git and GitHub
 - Python 3
 - VS Code as the text editor
+
+## My Learning
+
+Three things I did not know before this assignment:
+
+1. Git does not track empty folders. A folder only appears on GitHub once there
+   is a file inside it, which is why every mission folder has a README.
+2. Python compiles my code to bytecode before it runs it, so calling Python
+   "purely interpreted" is not really accurate.
+3. `>` replaces everything in a file while `>>` adds to the end. One missing
+   character is enough to lose text with no warning and no undo.
+
