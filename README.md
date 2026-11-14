@@ -46,6 +46,30 @@ saved outputs and screenshots so the observations in the READMEs can be
 checked. I removed my username, device name and IP address from those files
 before saving them.
 
+## What the missions cover
+
+- How a computer takes input, processes it, produces output and stores results
+- Terminal commands for looking at and changing files, plus flags and pipes
+- The operating system, running processes, storage, paths and file permissions
+- How Python runs a program, and how compilers differ from interpreters
+- Binary, decimal and hexadecimal conversions, and how text is encoded
+- Git commits, branches and Pull Requests on GitHub
+- Local networks, DNS, routers, protocols and what happens when a page loads
+
+## Running the number converter
+
+The converter is in `mission-05-numbers-data`. Run it from inside that folder:
+
+    cd mission-05-numbers-data
+    python3 number_converter.py
+
+It asks for a decimal number and prints the binary and hexadecimal forms:
+
+    Enter a decimal number: 25
+    Decimal: 25
+    Binary: 0b11001
+    Hexadecimal: 0x19
+
 ## About the commits
 
 Each mission was finished, documented, committed and pushed on its own. The

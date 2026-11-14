@@ -1,0 +1,106 @@
+FINAL AUDIT - run on 14 Nov 2026
+
+=== repository files ===
+.
+.gitignore
+evidence
+evidence/mission-00
+evidence/mission-00/tools-check.txt
+evidence/mission-01
+evidence/mission-01/hardware-summary.txt
+evidence/mission-02
+evidence/mission-02/terminal-session.txt
+evidence/mission-03
+evidence/mission-03/system-observations.txt
+evidence/mission-04
+evidence/mission-04/program-run.txt
+evidence/mission-05
+evidence/mission-05/converter-tests.txt
+evidence/mission-05/python-verification.txt
+evidence/mission-06
+evidence/mission-06/git-workflow.txt
+evidence/mission-06/pull-request.txt
+evidence/mission-07
+evidence/mission-07/connectivity-test.txt
+evidence/mission-07/dns-lookup.txt
+evidence/mission-08
+evidence/mission-08/final-audit.txt
+mission-00-setup
+mission-00-setup/README.md
+mission-01-computer-basics
+mission-01-computer-basics/README.md
+mission-02-terminal
+mission-02-terminal/README.md
+mission-02-terminal/terminal-practice
+mission-02-terminal/terminal-practice/backup-day1.txt
+mission-02-terminal/terminal-practice/demo.txt
+mission-02-terminal/terminal-practice/notes.txt
+mission-03-operating-system
+mission-03-operating-system/README.md
+mission-04-programs
+mission-04-programs/hello.py
+mission-04-programs/README.md
+mission-05-numbers-data
+mission-05-numbers-data/number_converter.py
+mission-05-numbers-data/README.md
+mission-06-git-github
+mission-06-git-github/README.md
+mission-07-networking
+mission-07-networking/README.md
+mission-08-final-report
+mission-08-final-report/README.md
+README.md
+
+=== required headings per mission README ===
+mission-00-setup/README.md -> 8 of 8
+mission-01-computer-basics/README.md -> 8 of 8
+mission-02-terminal/README.md -> 8 of 8
+mission-03-operating-system/README.md -> 8 of 8
+mission-04-programs/README.md -> 8 of 8
+mission-05-numbers-data/README.md -> 8 of 8
+mission-06-git-github/README.md -> 8 of 8
+mission-07-networking/README.md -> 8 of 8
+mission-08-final-report/README.md -> 8 of 8
+
+=== privacy scan: username, email domains, key prefixes ===
+no matches
+
+=== programs ===
+$ python3 mission-04-programs/hello.py
+Hello from Python
+
+$ echo 13 | python3 mission-05-numbers-data/number_converter.py
+Enter a decimal number: Decimal: 13
+Binary: 0b1101
+Hexadecimal: 0xd
+$ echo 25 | python3 mission-05-numbers-data/number_converter.py
+Enter a decimal number: Decimal: 25
+Binary: 0b11001
+Hexadecimal: 0x19
+$ echo 100 | python3 mission-05-numbers-data/number_converter.py
+Enter a decimal number: Decimal: 100
+Binary: 0b1100100
+Hexadecimal: 0x64
+
+=== git history ===
+6d06689 Explain networking concepts and website communication
+37e1e7e Complete Git and GitHub collaboration mission
+6db9a82 Build number converter and practise data representation
+85afa85 Compare compilers and interpreters
+3f6e496 Document operating system and file management
+bf8a90f Complete Terminal and file management mission
+66f0d1f Complete computer basics and IPOS mission
+27e6378 Set up Digital Detective mission structure
+
+=== branches ===
+* main
+  update-about
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/origin/update-about
+
+=== pull request ===
+PR #1 state=OPEN update-about->main files=README.md https://github.com/ThatKJ/digital-detective-8019/pull/1
+
+=== repository ===
+digital-detective-8019 visibility=PUBLIC https://github.com/ThatKJ/digital-detective-8019
